@@ -21,15 +21,6 @@
   "engines": {
     "node": ">=8.16.0"
   },
-  "scripts": {
-    "clean": "rm -rf ./.nyc_output ./node_modules/.cache ./coverage",
-    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "mocha": "nyc mocha",
-    "report": "nyc -r text -r lcov report",
-    "test": "npm run lint && npm run mocha"
-  },
   "dependencies": {
     "lodash.merge": "^4.6.1",
     "stellar-sdk": "^1.0.5"
@@ -39,8 +30,16 @@
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.4",
     "eslint": "^6.0.1",
-    "eslint-plugin-import": "^2.18.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1"
+  },
+  "scripts": {
+    "clean": "rm -rf ./.nyc_output ./node_modules/.cache ./coverage",
+    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "mocha": "nyc mocha",
+    "report": "nyc -r text -r lcov report",
+    "test": "npm run lint && npm run mocha"
   }
 }

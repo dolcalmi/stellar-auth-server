@@ -8,11 +8,16 @@ require('mocha');
 require('chai').use(require('chai-as-promised'));
 
 let serverKeyPair = StellarSdk.Keypair.random();
+let clientKeyPair = StellarSdk.Keypair.fromSecret('SDNEEPE7IUAAVVFD26RBFAT5G3SR2SOQMT265ETXEWIM4MQZHUJDYDMT');
 
 var utils = module.exports = {
 
   getClientPublicKey: function() {
-    return 'GDH366IHIVN4OQNPUCBM23LVKKXAUOQ3P4BLMC4A2N4JOPX5XU2GTRRA';
+    return clientKeyPair.publicKey();
+  },
+
+  getClientKeyPair: function() {
+    return clientKeyPair;
   },
 
   getServerKeyPair: function() {

@@ -1,7 +1,7 @@
 {
   "name": "stellar-auth-server",
   "version": "0.1.0",
-  "description": "Stellar SEP 0010 server side implementation",
+  "description": "Server side library for Stellar SEP 0010 implementation",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dolcalmi/stellar-auth-server.git"
@@ -31,6 +31,7 @@
     "coveralls": "^3.0.4",
     "eslint": "^6.0.1",
     "mocha": "^6.1.4",
+    "mockdate": "^2.0.3",
     "nyc": "^14.1.1"
   },
   "scripts": {

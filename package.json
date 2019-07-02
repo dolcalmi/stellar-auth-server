@@ -36,11 +36,11 @@
   },
   "scripts": {
     "clean": "rm -rf ./.nyc_output ./node_modules/.cache ./coverage",
-    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "mocha": "nyc mocha",
+    "test": "npm run lint && npm run mocha",
     "report": "nyc -r text -r lcov report",
-    "test": "npm run lint && npm run mocha"
+    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   }
 }

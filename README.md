@@ -65,7 +65,7 @@ return { transaction: txBase64 };
 ``` js
 stellarAuth.verify(txBase64SignedByClient)
 .then((txHash) => { token: buildToken(txHash) })
-.catch(e => { error: translate(err.message) || err.message })
+.catch(e => { error: translate(e.message) || e.message })
 ```
 
 ## Development

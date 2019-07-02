@@ -62,15 +62,9 @@ return { transaction: txBase64 };
 ### Verify
 
 ``` js
-try {
-  stellarAuth.verify(txBase64SignedByClient);
-  // success, return a jwt token
-  return { token: buildToken() }
-}
-catch (e) {
-  // error, return error message
-  return { error: translate(err.message) || err.message };
-}
+stellarAuth.verify(txBase64SignedByClient)
+.then(() => { token: buildToken() })
+.catch(e => { error: translate(err.message) || err.message })
 ```
 
 ## Development
@@ -85,7 +79,7 @@ $ npm test
 Run a single test suite:
 
 ```bash
-$ npm run mocha -- test/helpers/utils.spec.js
+$ npm run mocha -- test/lib/challenge.spec.js
 ```
 
 Run a single test (case sensitive):

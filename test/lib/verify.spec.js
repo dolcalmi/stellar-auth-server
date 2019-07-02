@@ -12,20 +12,20 @@ describe('StellarAuth - Verify', function() {
     const tx = new Transaction(txChallengeBase64);
     tx.sign(testUtils.getClientKeyPair());
     const txSigned = tx.toEnvelope().toXDR("base64");
-    expect(stellarAuth.verify(txSigned)).to.equal(true);
+    expect(stellarAuth.verify(txSigned)).to.be.fulfilled;
   });
 
   it('Should be invalid without signature', function() {
     const tx = new Transaction(txChallengeBase64);
     const txBase64 = tx.toEnvelope().toXDR("base64");
-    expect(()=> stellarAuth.verify(txBase64)).to.throw('stellar-auth.errors.invalid-transaction');
+    expect(stellarAuth.verify(txBase64)).to.be.rejectedWith('stellar-auth.errors.invalid-transaction');
   });
 
   it('Should be invalid with other signature', function() {
     const tx = new Transaction(txChallengeBase64);
     tx.sign(Keypair.random());
     const txSigned = tx.toEnvelope().toXDR("base64");
-    expect(()=> stellarAuth.verify(txSigned)).to.throw('stellar-auth.errors.invalid-signature');
+    expect(stellarAuth.verify(txSigned)).to.be.rejectedWith('stellar-auth.errors.invalid-signature');
   });
 
   it('Should be invalid for expired time', function() {
@@ -33,7 +33,7 @@ describe('StellarAuth - Verify', function() {
     const tx = new Transaction(txChallengeBase64);
     tx.sign(testUtils.getClientKeyPair());
     const txSigned = tx.toEnvelope().toXDR("base64");
-    expect(()=> stellarAuth.verify(txSigned)).to.throw('stellar-auth.errors.expired-transaction');
+    expect(stellarAuth.verify(txSigned)).to.be.rejectedWith('stellar-auth.errors.expired-transaction');
     MockDate.reset();
   });
 });

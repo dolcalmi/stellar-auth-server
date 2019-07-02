@@ -1,0 +1,46 @@
+{
+  "name": "stellar-auth-server",
+  "version": "0.1.0",
+  "description": "Stellar SEP 0010 server side implementation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolcalmi/stellar-auth-server.git"
+  },
+  "keywords": [
+    "stellar",
+    "sep0010",
+    "auth"
+  ],
+  "author": "Juan P Lopez <dolcalmi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dolcalmi/stellar-auth-server/issues"
+  },
+  "homepage": "https://github.com/dolcalmi/stellar-auth-server",
+  "main": "./lib/index.js",
+  "engines": {
+    "node": ">=8.16.0"
+  },
+  "scripts": {
+    "clean": "rm -rf ./.nyc_output ./node_modules/.cache ./coverage",
+    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "mocha": "nyc mocha",
+    "report": "nyc -r text -r lcov report",
+    "test": "npm run lint && npm run mocha"
+  },
+  "dependencies": {
+    "lodash.merge": "^4.6.1",
+    "stellar-sdk": "^1.0.5"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.4",
+    "eslint": "^6.0.1",
+    "eslint-plugin-import": "^2.18.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  }
+}

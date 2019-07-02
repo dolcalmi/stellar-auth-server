@@ -5,6 +5,7 @@
 [![David](https://img.shields.io/david/dolcalmi/stellar-auth-server.svg)](https://david-dm.org/dolcalmi/stellar-auth-server)
 [![David](https://img.shields.io/david/dev/dolcalmi/stellar-auth-server.svg)](https://david-dm.org/dolcalmi/stellar-auth-server?type=dev)
 [![Try on RunKit](https://badge.runkitcdn.com/stellar-auth-server.svg)](https://runkit.com/npm/stellar-auth-server)
+
 Server side library for [Stellar SEP 0010](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0010.md) implementation.
 
 ## Installation

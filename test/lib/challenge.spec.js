@@ -1,4 +1,4 @@
-const { Transaction } = require("stellar-sdk");
+const { Transaction } = require('stellar-sdk');
 var testUtils = require('../test-utils');
 var stellarAuth = testUtils.getStellarAuthInstance();
 var expect = require('chai').expect;

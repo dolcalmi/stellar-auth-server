@@ -13,6 +13,7 @@ describe('StellarAuth - Verify', function() {
     tx.sign(testUtils.getClientKeyPair());
     const txSigned = tx.toEnvelope().toXDR("base64");
     expect(stellarAuth.verify(txSigned)).to.be.fulfilled;
+    expect(stellarAuth.verify(txSigned)).to.become(tx.hash().toString("hex"));
   });
 
   it('Should be invalid without signature', function() {

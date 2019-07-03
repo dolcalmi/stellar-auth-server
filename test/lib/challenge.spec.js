@@ -8,6 +8,10 @@ describe('StellarAuth - Challenge', function() {
   const txBase64 = stellarAuth.challenge(clientPublicKey);
   const tx = new Transaction(txBase64);
 
+  it('Should have an invalid sequence', function() {
+    expect(tx.sequence).to.equal('0');
+  });
+
   it('Should have valid timebounds', function() {
     const challengeExpiresIn = stellarAuth.getOption('challengeExpiresIn');
     expect(tx.timeBounds).to.have.property('minTime');

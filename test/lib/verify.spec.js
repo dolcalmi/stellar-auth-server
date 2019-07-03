@@ -8,33 +8,33 @@ describe('StellarAuth - Verify', function() {
   const clientPublicKey = testUtils.getClientPublicKey();
   const txChallengeBase64 = stellarAuth.challenge(clientPublicKey);
 
-  it('Should be valid', function() {
+  it('Should be valid', async function() {
     const tx = new Transaction(txChallengeBase64);
     tx.sign(testUtils.getClientKeyPair());
     const txSigned = tx.toEnvelope().toXDR('base64');
-    expect(stellarAuth.verify(txSigned)).to.be.fulfilled;
-    expect(stellarAuth.verify(txSigned)).to.become(tx.hash().toString('hex'));
+    await expect(stellarAuth.verify(txSigned)).to.be.fulfilled;
+    await expect(stellarAuth.verify(txSigned)).to.become(tx.hash().toString('hex'));
   });
 
-  it('Should be invalid without signature', function() {
+  it('Should be invalid without signature', async function() {
     const tx = new Transaction(txChallengeBase64);
     const txBase64 = tx.toEnvelope().toXDR('base64');
-    expect(stellarAuth.verify(txBase64)).to.be.rejectedWith('stellar-auth.errors.invalid-transaction');
+    await expect(stellarAuth.verify(txBase64)).to.be.rejectedWith('stellar-auth.errors.invalid-transaction');
   });
 
-  it('Should be invalid with other signature', function() {
+  it('Should be invalid with other signature', async function() {
     const tx = new Transaction(txChallengeBase64);
     tx.sign(Keypair.random());
     const txSigned = tx.toEnvelope().toXDR('base64');
-    expect(stellarAuth.verify(txSigned)).to.be.rejectedWith('stellar-auth.errors.invalid-signature');
+    await expect(stellarAuth.verify(txSigned)).to.be.rejectedWith('stellar-auth.errors.invalid-signature');
   });
 
-  it('Should be invalid for expired time', function() {
+  it('Should be invalid for expired time', async function() {
     MockDate.set('2100-11-22');
     const tx = new Transaction(txChallengeBase64);
     tx.sign(testUtils.getClientKeyPair());
     const txSigned = tx.toEnvelope().toXDR('base64');
-    expect(stellarAuth.verify(txSigned)).to.be.rejectedWith('stellar-auth.errors.expired-transaction');
+    await expect(stellarAuth.verify(txSigned)).to.be.rejectedWith('stellar-auth.errors.expired-transaction');
     MockDate.reset();
   });
 });

@@ -13,7 +13,10 @@ describe('StellarAuth - Verify', function() {
     tx.sign(testUtils.getClientKeyPair());
     const txSigned = tx.toEnvelope().toXDR('base64');
     await expect(stellarAuth.verify(txSigned)).to.be.fulfilled;
-    await expect(stellarAuth.verify(txSigned)).to.become(tx.hash().toString('hex'));
+    await expect(stellarAuth.verify(txSigned)).to.become({
+      clientPublicKey,
+      hash: tx.hash().toString('hex'),
+    });
   });
 
   it('Should be invalid without signature', async function() {

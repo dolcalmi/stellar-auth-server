@@ -31,4 +31,10 @@ describe('StellarAuth - Challenge', function() {
     const serverKeyPair = testUtils.getServerKeyPair();
     expect(serverKeyPair.verify(tx.hash(), tx.signatures[0].signature())).to.equal(true);
   });
+
+  it('Should throws an exception with invalid public key', function() {
+    expect(() => stellarAuth.challenge('')).to.throw();
+    expect(() => stellarAuth.challenge(null)).to.throw();
+    expect(() => stellarAuth.challenge(123)).to.throw();
+  });
 });

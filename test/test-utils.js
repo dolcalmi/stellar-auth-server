@@ -24,8 +24,9 @@ var utils = module.exports = {
     return serverKeyPair;
   },
 
-  getStellarAuthInstance: function(options) {
+  getStellarAuthInstance: function(options = {}) {
     var StellarAuth = require('../lib');
+    options.networkPassphrase = options.networkPassphrase || StellarSdk.Networks.TESTNET;
     return new StellarAuth(this.getServerKeyPair(), options);
   },
 };

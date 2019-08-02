@@ -1,4 +1,4 @@
-const { Transaction } = require('stellar-sdk');
+const { Transaction, Networks } = require('stellar-sdk');
 var testUtils = require('../test-utils');
 var stellarAuth = testUtils.getStellarAuthInstance();
 var expect = require('chai').expect;
@@ -6,7 +6,8 @@ var expect = require('chai').expect;
 describe('StellarAuth - Challenge', function() {
   const clientPublicKey = testUtils.getClientPublicKey();
   const txBase64 = stellarAuth.challenge(clientPublicKey);
-  const tx = new Transaction(txBase64);
+  const networkPassphrase = Networks.TESTNET;
+  const tx = new Transaction(txBase64, networkPassphrase);
 
   it('Should have an invalid sequence', function() {
     expect(tx.sequence).to.equal('0');

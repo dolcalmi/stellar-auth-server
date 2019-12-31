@@ -1,6 +1,6 @@
 {
   "name": "stellar-auth-server",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Server side library for Stellar SEP 0010 implementation",
   "repository": {
     "type": "git",
